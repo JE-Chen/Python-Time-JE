@@ -182,19 +182,19 @@ class Time_difference(threading.Thread):
         day = '1-31'
         hour = '0-23'
         minute = 30
-        if(len(args)==1):
+        if(len(args)>=1):
             month=args[0]
-            if (len(args) == 2):
+            if (len(args) >= 2):
                 day_of_week=args[1]
-                if (len(args) == 3):
+                if (len(args) >= 3):
                     day=args[2]
-                    if (len(args) == 4):
+                    if (len(args) >= 4):
                         hour=args[3]
-                        if (len(args) == 5):
+                        if (len(args) >= 5):
                             minute = args[4]
         sched = BackgroundScheduler()
         print(datetime.datetime.now())
-        print('Doing Job')
+        print('Doing Job',Job_Fuction)
         sched.add_job(Job_Fuction, 'cron', month=month,day_of_week=day_of_week, day=day, hour=hour,minute=minute)
         sched.start()
 

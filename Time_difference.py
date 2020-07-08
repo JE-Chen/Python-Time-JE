@@ -64,14 +64,52 @@ class Time_difference(threading.Thread):
 
     def Set_Sleep_Time(self,Sleep_Time):
         self.Sleep_Time=Sleep_Time
+
 # ----------------------------------------------------------------------------------------------
+
+    #run 一個方法 直到旗標更改
     def Just_Delay_And_Job(self,Object,Delay_Time,Stop_Flag):
         self.run(Object,Delay_Time,Stop_Flag)
-        
+
+
     def run(self,Object,Delay_Time,Stop_Flag) -> None:
             while(Stop_Flag):
                 Object()
                 time.sleep(Delay_Time)
+
+# ----------------------------------------------------------------------------------------------
+
+    #得到當前日期
+    def Get_Now(self):
+        return time.strftime("%c")
+
+    #得到本地當前日期
+    def Get_Now_Local(self):
+        return time.strftime("%x")
+
+    #得到當前年
+    def Get_Now_Year(self):
+        return time.strftime("%Y")
+
+    #得到當前月份
+    def Get_Now_Mon(self):
+        return time.strftime("%m")
+
+    #得到當前是第幾天
+    def Get_Now_Day(self):
+        return time.strftime("%d")
+
+    #得到當前小時
+    def Get_Now_Hour(self):
+        return time.strftime("%H")
+
+    #得到當前分鐘
+    def Get_Now_Min(self):
+        return time.strftime("%M")
+
+    #得到當前秒數
+    def Get_Now_Sec(self):
+        return time.strftime("%S")
 # ----------------------------------------------------------------------------------------------
     # 獲取Reduce_Day天前的日期
     def Get_Time_difference_Day_Reduce(self,Reduce_Day):
@@ -144,19 +182,19 @@ class Time_difference(threading.Thread):
         day = '1-31'
         hour = '0-23'
         minute = 30
-        if(len(args)>=1):
+        if(len(args)==1):
             month=args[0]
-            if (len(args) >= 2):
+            if (len(args) == 2):
                 day_of_week=args[1]
-                if (len(args) >= 3):
+                if (len(args) == 3):
                     day=args[2]
-                    if (len(args) >= 4):
+                    if (len(args) == 4):
                         hour=args[3]
-                        if (len(args) >= 5):
+                        if (len(args) == 5):
                             minute = args[4]
         sched = BackgroundScheduler()
         print(datetime.datetime.now())
-        print('Doing Job'Job_Fuction)
+        print('Doing Job')
         sched.add_job(Job_Fuction, 'cron', month=month,day_of_week=day_of_week, day=day, hour=hour,minute=minute)
         sched.start()
 

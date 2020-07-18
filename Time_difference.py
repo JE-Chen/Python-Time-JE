@@ -1,6 +1,7 @@
 import time
 import datetime
 import threading
+from  threading import Timer
 from apscheduler.schedulers.background import BackgroundScheduler
 
 '''
@@ -157,9 +158,16 @@ class Time_difference(threading.Thread):
         return Time_difference
 
 # ----------------------------------------------------------------------------------------------
+    def Sleep(self,Sleep_Time):
+        time.sleep(Sleep_Time)
+# ----------------------------------------------------------------------------------------------
+    def Delay_Do(self,Time,Function):
+        Go = threading.Timer(Time,Function)
+        Go.start()
+# ----------------------------------------------------------------------------------------------
     '''
-    BlockingScheduler: 调用start函数后会阻塞当前线程。当调度器是你应用中唯一要运行的东西时（如上例）使用。
-    BackgroundScheduler: 调用start后主线程不会阻塞。当你不运行任何其他框架时使用，并希望调度器在你应用的后台执行。
+    BlockingScheduler: 調用start函數後會阻塞當前線程。當調度器是你應用中唯一要運行的東西時（如上例）使用。
+    BackgroundScheduler: 調用start後主線程不會阻塞。當你不運行任何其他框架時使用，並希望調度器在你應用的後台執行。
     '''
     def Loop_Work_Seconds(self,Seconds,Event,Mode='interval'):
         self.scheduler.add_job(Event,Mode,seconds=Seconds)

@@ -161,6 +161,12 @@ class Time_difference(threading.Thread):
     def Sleep(self,Sleep_Time):
         time.sleep(Sleep_Time)
 # ----------------------------------------------------------------------------------------------
+    def System_Run_Time(self):
+        return time.perf_counter()
+
+    def Thread_Run_Time(self):
+        return time.process_time()
+# ----------------------------------------------------------------------------------------------
     def Delay_Do(self,Time,Function):
         Go = threading.Timer(Time,Function)
         Go.start()
